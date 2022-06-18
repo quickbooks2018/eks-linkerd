@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudgeeks-app
+  labels:
+    app: cloudgeeks-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudgeeks-app
+  template:
+    metadata:
+      labels:
+        app: cloudgeeks-app
+    spec:
+      containers:
+        - name: cloudgeeks-app
+          image: quickbooks2018/green:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudgeeks-app-nodeport-service
+  labels:
+    app: cloudgeeks-app
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /index.html
+spec:
+  type: NodePort
+  selector:
+    app: cloudgeeks-app
+  ports:
+    - port: 80
+      targetPort: 80
+
+   
