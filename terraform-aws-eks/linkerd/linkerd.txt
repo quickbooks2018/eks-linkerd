@@ -98,6 +98,8 @@ kubectl get deployments/cloudgeeks-app -o yaml -n default \
 
 linkerd viz -n default edges deployment
 
+linkerd viz -n default edges po
+
 linkerd viz -n default tap deployments/cloudgeeks-app
 
 linkerd viz -n default tap deploy
