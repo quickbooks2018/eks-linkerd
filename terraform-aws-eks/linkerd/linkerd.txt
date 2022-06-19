@@ -142,3 +142,24 @@ kubectl -n linkerd rollout restart deployment linkerd-destination linkerd-identi
 linkerd viz -n linkerd-viz tap deploy
 
 kubectl -n linkerd-viz rollout restart deployment grafana metrics-api prometheus tap tap-injector web
+
+#####################
+# Removing extensions
+#####################
+To remove any extension, call its uninstall subcommand and pipe it to kubectl delete -f -. For the bundled extensions that means:
+
+# To remove Linkerd Viz
+linkerd viz uninstall | kubectl delete -f -
+
+# To remove Linkerd Jaeger
+linkerd jaeger uninstall | kubectl delete -f -
+
+#############################
+# Removing the control plane
+#############################
+ Note
+
+Uninstallating the control plane requires cluster-wide permissions.
+To remove the control plane, run:
+
+linkerd uninstall | kubectl delete -f -
