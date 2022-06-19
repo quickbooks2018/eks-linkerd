@@ -27,9 +27,10 @@ linkerd version
 ---------------------------------------------
 linkerd install | kubectl apply -f -
 
-linkerd install --set proxyInit.runAsRoot=true --set clusterNetworks=10.60.0.0/16 | kubectl apply -f -
-
 linkerd install --set proxyInit.runAsRoot=true | kubectl apply -f -
+
+
+
 
 linkerd check
 
